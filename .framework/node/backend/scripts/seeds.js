@@ -15,14 +15,14 @@ async function main() {
 
   const options = { upsert: true, new: true };
 
-  const regularUser = {};
+  const regularUser = new User();
   regularUser.username = `regularUser`;
   regularUser.email = `regularUser@gmail.com`;
   regularUser.role = `user`;
   regularUser.setPassword(`123456`);
   await User.findOneAndUpdate(regularUser, {}, options);
 
-  const adminUser = {};
+  const adminUser = new User();
   adminUser.username = `adminUser`;
   adminUser.email = `adminUser@gmail.com`;
   adminUser.role = `admin`;
