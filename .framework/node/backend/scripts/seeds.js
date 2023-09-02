@@ -13,21 +13,19 @@ const connectedToDatabase = () => {
 async function main() {
   connectedToDatabase();
 
-  const options = { upsert: true, new: true };
-
   const regularUser = new User();
   regularUser.username = `regularUser`;
   regularUser.email = `regularUser@gmail.com`;
   regularUser.role = `user`;
   regularUser.setPassword(`123456`);
-  await User.findOneAndUpdate(regularUser, {}, options);
+  await regularUser.save();
 
   const adminUser = new User();
   adminUser.username = `adminUser`;
   adminUser.email = `adminUser@gmail.com`;
   adminUser.role = `admin`;
   adminUser.setPassword(`123456`);
-  await User.findOneAndUpdate(adminUser, {}, options);
+  await adminUser.save();
 }
 
 main()
