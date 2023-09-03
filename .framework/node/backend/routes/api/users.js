@@ -5,6 +5,18 @@ var User = mongoose.model("User");
 var auth = require("../auth");
 const { sendEvent } = require("../../lib/event");
 
+router.get("/users", auth.required, function (req, res, next) {
+  User.find()
+    .then(function (users) {
+      return res.json({
+        users: users.map(function (user) {
+          return user.toAuthJSON();
+        }),
+      });
+    })
+    .catch(next);
+});
+
 router.get("/user", auth.required, function (req, res, next) {
   User.findById(req.payload.id)
     .then(function (user) {
