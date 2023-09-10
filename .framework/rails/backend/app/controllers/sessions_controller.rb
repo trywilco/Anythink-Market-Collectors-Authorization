@@ -16,7 +16,6 @@ class SessionsController < Devise::SessionsController
   protected
 
   def configure_permitted_parameters
-    # Permit :username in addition to :email and :password
     devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password, :username])
   end
 end
