@@ -23,6 +23,7 @@ class UsersQueriesMixin:
         email: str,
         salt: str,
         hashed_password: str
+        role: str
     ) -> Record: ...
     async def update_user_by_username(
         self,

@@ -3,7 +3,7 @@ from typing import Optional
 from app.db.errors import EntityDoesNotExist
 from app.db.queries.queries import queries
 from app.db.repositories.base import BaseRepository
-from app.models.domain.users import User, UserInDB
+from app.models.domain.users import User, UserInDB, UserRole
 
 
 class UsersRepository(BaseRepository):
@@ -32,8 +32,9 @@ class UsersRepository(BaseRepository):
         username: str,
         email: str,
         password: str,
+        role: UserRole = UserRole.user
     ) -> UserInDB:
-        user = UserInDB(username=username, email=email)
+        user = UserInDB(username=username, email=email, role=role)
         user.change_password(password)
 
         async with self.connection.transaction():
@@ -43,6 +44,7 @@ class UsersRepository(BaseRepository):
                 email=user.email,
                 salt=user.salt,
                 hashed_password=user.hashed_password,
+                role=user.role
             )
 
         return user.copy(update=dict(user_row))

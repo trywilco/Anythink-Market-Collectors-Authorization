@@ -1,14 +1,19 @@
 from typing import Optional
+from enum import Enum
 
 from app.models.common import DateTimeModelMixin, IDModelMixin
 from app.models.domain.rwmodel import RWModel
 from app.services import security
 
+class UserRole(str, Enum):
+    user = "user"
+    admin = "admin"
 
 class User(RWModel):
     username: str
     email: str
     bio: str = ""
+    role: UserRole = UserRole.user
     image: Optional[str] = None
 
 
