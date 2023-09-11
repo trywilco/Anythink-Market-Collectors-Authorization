@@ -12,7 +12,7 @@ async def create_users():
     usersRepository = UsersRepository(conn=conn)
 
     await usersRepository.create_user(username="regularuser", password="123456", email="regularuser@gmail.com", role="user")
-    await usersRepository.create_user(username=f"adminuser", password="123456", email=f"adminuser@gmail.com", role="admin")
+    await usersRepository.create_user(username="adminuser", password="123456", email=f"adminuser@gmail.com", role="admin")
     
     await conn.close()
 
