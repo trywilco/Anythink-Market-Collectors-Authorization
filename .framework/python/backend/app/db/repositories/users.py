@@ -51,7 +51,7 @@ class UsersRepository(BaseRepository):
                 role=user.role
             )
 
-            return user.copy(update=dict(user_row))
+        return user.copy(update=dict(user_row))
 
     async def update_user(  # noqa: WPS211
         self,
