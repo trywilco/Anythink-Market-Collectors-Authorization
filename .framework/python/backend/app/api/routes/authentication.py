@@ -1,9 +1,8 @@
 from typing import List, Dict
 
 from fastapi import APIRouter, Body, Depends, HTTPException
-from starlette.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST, HTTP_403_FORBIDDEN
+from starlette.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
 
-from app.api.dependencies.authentication import get_current_user_authorizer
 from app.models.domain.users import User
 from app.api.dependencies.database import get_repository
 from app.core.config import get_app_settings
